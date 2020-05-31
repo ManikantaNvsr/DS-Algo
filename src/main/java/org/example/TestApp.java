@@ -16,6 +16,7 @@ public class TestApp {
         tree.insert(15);
         tree.insert(1);
         System.out.println(tree.lookUp(6));
+        tree.print2D(tree.root);
 
     }
 }
