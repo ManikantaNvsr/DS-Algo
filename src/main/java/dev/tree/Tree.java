@@ -8,6 +8,9 @@ import java.util.TreeMap;
 
 public class Tree {
     public Node root;
+    public int height = 0;
+    private TreeMap<Integer, Integer> treeMap = new TreeMap<Integer, Integer>();
+    private int cursorForTopView = 0;
 
     public Tree() {
         this.root = null;
@@ -25,7 +28,7 @@ public class Tree {
         if (this.root == null) {
             this.root = newNode;
             System.out.println("---Inserted given value as root node---");
-            return ;
+            return;
         }
 
         // If there are nodes in the tree
@@ -38,7 +41,7 @@ public class Tree {
                 } else {
                     System.out.println("---Inserted " + value + " value as left leaf for one of the nodes---");
                     rootNodeReference.left = newNode;
-                    return ;
+                    return;
                 }
 
             } else {
@@ -48,7 +51,7 @@ public class Tree {
                 } else {
                     System.out.println("---Inserted " + value + " value as right leaf for one of the nodes---");
                     rootNodeReference.right = newNode;
-                    return ;
+                    return;
                 }
 
             }
@@ -116,6 +119,8 @@ public class Tree {
     }
 
     public void printTree(Node root) {
+
+        // This is a pre order traversal print function
         if (root != null) {
             System.out.print(root.data + " ");
             if (root.left != null) {
@@ -126,6 +131,80 @@ public class Tree {
             }
         }
 
+    }
+
+    public void printTreePostOrder(Node root) {
+
+        // This is a post order traversal print function
+        if (root != null) {
+            if (root.left != null) {
+                printTreePostOrder(root.left);
+            }
+            if (root.right != null) {
+                printTreePostOrder(root.right);
+            }
+            System.out.print(root.data + " ");
+        }
+
+    }
+
+    public void printTreeInOrder(Node root) {
+
+        // This is a in order traversal print function
+        if (root != null) {
+            if (root.left != null) {
+                printTreeInOrder(root.left);
+            }
+            System.out.print(root.data + " ");
+            if (root.right != null) {
+                printTreeInOrder(root.right);
+            }
+        }
+
+    }
+
+
+    public int heightOfTree(Node root) {
+        if (root == null) {
+            return 0;
+        } else {
+            int leftTreeHeight = heightOfTree(root.left);
+            int rightTreeHeight = heightOfTree(root.right);
+            return 1 + Math.max(leftTreeHeight, rightTreeHeight);
+        }
+    }
+
+    public void topViewForAnyTree(Node root) {
+
+    }
+
+    public void topViewForBinaryTree(Node root) {
+        // consider root node as 0 cursor and take the respective distances from rootnode to find indexes of topview elements
+        if (!treeMap.containsKey(cursorForTopView)) {
+            treeMap.put(cursorForTopView, root.data);
+        } else {
+            if (root.data > treeMap.get(cursorForTopView)) {
+                treeMap.put(cursorForTopView, root.data);
+            }
+        }
+
+        if (root != null) {
+            if (root.left != null) {
+                cursorForTopView = cursorForTopView - 1;
+                topViewForBinaryTree(root.left);
+            }
+
+            if (root.right != null) {
+                cursorForTopView = cursorForTopView + 1;
+                topViewForBinaryTree(root.right);
+            }
+        }
+
+        // making the cursor for topview is zero when it comes back to rootnode after iterating all the connecting nodes in the left subtree
+
+        cursorForTopView = 0;
+
+        System.out.println(treeMap.toString());
     }
 
     // This has been taken from Geeks forGeeks to test my tree implementation.
