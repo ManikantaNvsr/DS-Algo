@@ -1,9 +1,5 @@
-package dev.tree;
+package dev.code;
 
-import javax.swing.tree.TreeNode;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
 import java.util.TreeMap;
 
 public class Tree {
@@ -188,7 +184,6 @@ public class Tree {
             }
         }
 
-        if (root != null) {
             if (root.left != null) {
                 cursorForTopView = cursorForTopView - 1;
                 topViewForBinaryTree(root.left);
@@ -198,7 +193,6 @@ public class Tree {
                 cursorForTopView = cursorForTopView + 1;
                 topViewForBinaryTree(root.right);
             }
-        }
 
         // making the cursor for topview is zero when it comes back to rootnode after iterating all the connecting nodes in the left subtree
 
