@@ -5,7 +5,7 @@ package dev.problems;
 public class CoupleHoldingHands {
 
 
-    public int minSwapsCouples(int[] row) {
+    public int minSwapsCouplesRecursive(int[] row) {
 
         int numberOfPairs = row.length / 2;
 
@@ -92,8 +92,39 @@ public class CoupleHoldingHands {
 
     public static void main(String[] args) {
 
-        int[] row = {15,22,30,31,2,6,43,25,53,7,13,5,45,34,27,54,21,55,28,24,58,9,4,10,46,20,33,52,41,12,44,1,29,8,14,51,23,50,18,40,57,0,37,59,11,32,3,36,38,26,42,16,56,19,17,39,49,35,48,47};
+        int[] row = {15, 22, 30, 31, 2, 6, 43, 25, 53, 7, 13, 5, 45, 34, 27, 54, 21, 55, 28, 24, 58, 9, 4, 10, 46, 20, 33, 52, 41, 12, 44, 1, 29, 8, 14, 51, 23, 50, 18, 40, 57, 0, 37, 59, 11, 32, 3, 36, 38, 26, 42, 16, 56, 19, 17, 39, 49, 35, 48, 47};
+
         CoupleHoldingHands dev = new CoupleHoldingHands();
-        System.out.println(dev.minSwapsCouples(row));
+        // *** recursive solution ***
+        System.out.println(dev.minSwapsCouplesRecursive(row));
+        // *** efficient and better solution ***
+        System.out.println(dev.minSwapsGreedyApproach(row));
+    }
+
+    private int minSwapsGreedyApproach(int[] row) {
+        int swaps = 0;
+
+        for (int i = 0; i < row.length - 1; i = i + 2) {
+
+            // we are skipping if there are adjacent pairs
+            if (pair(row[i]) == row[i + 1]) {
+                continue;
+            }
+
+            // since we had already checked whether i + 1 is pair of i or not.
+            int j = i + 2;
+            while (pair(row[i]) != row[j]) {
+                j++;
+            }
+
+            // swap the row[i+1] when you find the pair for row[i]
+            int temp = row[i + 1];
+            row[i + 1] = row[j];
+            row[j] = temp;
+            swaps++;
+        }
+
+        return swaps;
+
     }
 }
