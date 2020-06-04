@@ -1,4 +1,4 @@
-package dev.code;
+package dev.problems;
 
 /**
  * Hello world!
