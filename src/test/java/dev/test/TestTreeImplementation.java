@@ -2,6 +2,7 @@ package dev.test;
 
 import dev.code.Tree;
 
+import dev.problems.DiameterOfBinaryTree;
 import org.junit.Test;
 
 public class TestTreeImplementation {
@@ -16,12 +17,15 @@ public class TestTreeImplementation {
             tree.insert(x);
         }*/
         tree.insert(10);
-        tree.insert(12);
-        tree.insert(2);
-        tree.insert(4);
-        tree.insert(5);
-        tree.insert(6);
+        /*tree.insert(7);
+        *//*tree.insert(12);*//*
+        */tree.insert(4);
+        tree.insert(9);
         tree.print2D(tree.root);
+
+        DiameterOfBinaryTree dBT = new DiameterOfBinaryTree();
+
+        System.out.println(dBT.diameterOfBinaryTree(tree.root));
 
     }
 }

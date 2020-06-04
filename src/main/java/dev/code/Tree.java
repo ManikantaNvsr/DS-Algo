@@ -184,15 +184,15 @@ public class Tree {
             }
         }
 
-            if (root.left != null) {
-                cursorForTopView = cursorForTopView - 1;
-                topViewForBinaryTree(root.left);
-            }
+        if (root.left != null) {
+            cursorForTopView = cursorForTopView - 1;
+            topViewForBinaryTree(root.left);
+        }
 
-            if (root.right != null) {
-                cursorForTopView = cursorForTopView + 1;
-                topViewForBinaryTree(root.right);
-            }
+        if (root.right != null) {
+            cursorForTopView = cursorForTopView + 1;
+            topViewForBinaryTree(root.right);
+        }
 
         // making the cursor for topview is zero when it comes back to rootnode after iterating all the connecting nodes in the left subtree
 
@@ -232,5 +232,25 @@ public class Tree {
     public void print2D(Node root) {
         // Pass initial space count as 0
         print2DUtil(root, 0);
+    }
+
+    // height of a node
+    public int getHeight(Node node) {
+
+        // there is no height if there are no nodes
+        if (node == null) {
+            return -1;
+        }
+
+        // if there are no children
+        if (node.left == null && node.right == null) {
+            return 0;
+        } else {
+            int a = getHeight(node.left);
+            int b = getHeight(node.right);
+            return 1 + Math.max(a, b);
+        }
+
+
     }
 }
