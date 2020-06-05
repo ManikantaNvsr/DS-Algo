@@ -3,9 +3,9 @@ package dev.code;
 import java.util.TreeMap;
 
 public class Tree {
-    public Node root;
+    public TreeNode root;
     public int height = 0;
-    private TreeMap<Integer, Integer> treeMap = new TreeMap<Integer, Integer>();
+    private TreeMap<Integer, Integer> treeMap = new TreeMap<>();
     private int cursorForTopView = 0;
 
     public Tree() {
@@ -13,12 +13,12 @@ public class Tree {
     }
 
     public Tree(int value) {
-        this.root = new Node(value);
+        this.root = new TreeNode(value);
     }
 
     public void insert(int value) {
 
-        Node newNode = new Node(value);
+        TreeNode newNode = new TreeNode(value);
 
         // If there are no nodes in the tree
         if (this.root == null) {
@@ -28,10 +28,10 @@ public class Tree {
         }
 
         // If there are nodes in the tree
-        Node rootNodeReference = this.root;
+        TreeNode rootNodeReference = this.root;
         while (true) {
 
-            if (value < rootNodeReference.data) {
+            if (value < rootNodeReference.val) {
                 if (rootNodeReference.left != null) {
                     rootNodeReference = rootNodeReference.left;
                 } else {
@@ -56,18 +56,18 @@ public class Tree {
 
     public boolean lookUp(int value) {
 
-        Node rootNodeReference = this.root;
+        TreeNode rootNodeReference = this.root;
 
         while (rootNodeReference != null) {
 
-            if (value < rootNodeReference.data) {
+            if (value < rootNodeReference.val) {
                 if (rootNodeReference.left != null) {
                     rootNodeReference = rootNodeReference.left;
                 } else {
                     rootNodeReference = null;
                 }
 
-            } else if (value > rootNodeReference.data) {
+            } else if (value > rootNodeReference.val) {
 
                 if (rootNodeReference.right != null) {
                     rootNodeReference = rootNodeReference.right;
@@ -82,20 +82,20 @@ public class Tree {
         return false;
     }
 
-    public Node lookUpForReference(int value) {
+    public TreeNode lookUpForReference(int value) {
 
-        Node rootNodeReference = this.root;
+        TreeNode rootNodeReference = this.root;
 
         while (rootNodeReference != null) {
 
-            if (value < rootNodeReference.data) {
+            if (value < rootNodeReference.val) {
                 if (rootNodeReference.left != null) {
                     rootNodeReference = rootNodeReference.left;
                 } else {
                     rootNodeReference = null;
                 }
 
-            } else if (value > rootNodeReference.data) {
+            } else if (value > rootNodeReference.val) {
 
                 if (rootNodeReference.right != null) {
                     rootNodeReference = rootNodeReference.right;
@@ -114,11 +114,11 @@ public class Tree {
         // need to implement this
     }
 
-    public void printTree(Node root) {
+    public void printTree(TreeNode root) {
 
         // This is a pre order traversal print function
         if (root != null) {
-            System.out.print(root.data + " ");
+            System.out.print(root.val + " ");
             if (root.left != null) {
                 printTree(root.left);
             }
@@ -129,7 +129,7 @@ public class Tree {
 
     }
 
-    public void printTreePostOrder(Node root) {
+    public void printTreePostOrder(TreeNode root) {
 
         // This is a post order traversal print function
         if (root != null) {
@@ -139,19 +139,19 @@ public class Tree {
             if (root.right != null) {
                 printTreePostOrder(root.right);
             }
-            System.out.print(root.data + " ");
+            System.out.print(root.val + " ");
         }
 
     }
 
-    public void printTreeInOrder(Node root) {
+    public void printTreeInOrder(TreeNode root) {
 
         // This is a in order traversal print function
         if (root != null) {
             if (root.left != null) {
                 printTreeInOrder(root.left);
             }
-            System.out.print(root.data + " ");
+            System.out.print(root.val + " ");
             if (root.right != null) {
                 printTreeInOrder(root.right);
             }
@@ -160,7 +160,7 @@ public class Tree {
     }
 
 
-    public int heightOfTree(Node root) {
+    public int heightOfTree(TreeNode root) {
         if (root == null) {
             return 0;
         } else {
@@ -170,17 +170,17 @@ public class Tree {
         }
     }
 
-    public void topViewForAnyTree(Node root) {
+    public void topViewForAnyTree(TreeNode root) {
 
     }
 
-    public void topViewForBinaryTree(Node root) {
+    public void topViewForBinaryTree(TreeNode root) {
         // consider root node as 0 cursor and take the respective distances from rootnode to find indexes of topview elements
         if (!treeMap.containsKey(cursorForTopView)) {
-            treeMap.put(cursorForTopView, root.data);
+            treeMap.put(cursorForTopView, root.val);
         } else {
-            if (root.data > treeMap.get(cursorForTopView)) {
-                treeMap.put(cursorForTopView, root.data);
+            if (root.val > treeMap.get(cursorForTopView)) {
+                treeMap.put(cursorForTopView, root.val);
             }
         }
 
@@ -206,7 +206,7 @@ public class Tree {
     // It does reverse inorder traversal
     static int COUNT = 10;
 
-    void print2DUtil(Node root, int space) {
+    void print2DUtil(TreeNode root, int space) {
         // Base case
         if (root == null)
             return;
@@ -222,20 +222,20 @@ public class Tree {
         System.out.print("\n");
         for (int i = COUNT; i < space; i++)
             System.out.print(" ");
-        System.out.print(root.data + "\n");
+        System.out.print(root.val + "\n");
 
         // Process left child
         print2DUtil(root.left, space);
     }
 
     // Wrapper over print2DUtil()
-    public void print2D(Node root) {
+    public void print2D(TreeNode root) {
         // Pass initial space count as 0
         print2DUtil(root, 0);
     }
 
     // height of a node
-    public int getHeight(Node node) {
+    public int getHeight(TreeNode node) {
 
         // there is no height if there are no nodes
         if (node == null) {

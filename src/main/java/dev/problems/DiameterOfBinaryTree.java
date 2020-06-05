@@ -1,6 +1,6 @@
 package dev.problems;
 
-import dev.code.Node;
+import dev.code.TreeNode;
 
 // https://leetcode.com/problems/diameter-of-binary-tree/
 public class DiameterOfBinaryTree {
@@ -10,7 +10,7 @@ public class DiameterOfBinaryTree {
 
     int diameter = 0;
 
-    public int diameterOfBinaryTree(Node root) {
+    public int diameterOfBinaryTree(TreeNode root) {
 
         if (root != null) {
 
@@ -26,7 +26,7 @@ public class DiameterOfBinaryTree {
         return diameter;
     }
 
-    public int getHeight(Node node) {
+    public int getHeight(TreeNode node) {
 
         // there is no height if there are no nodes
         if (node != null) {// if there are no children
