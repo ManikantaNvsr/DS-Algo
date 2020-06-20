@@ -22,10 +22,12 @@ public class SubSetsProductLessThanK {
         int leftIndex = 0;
         int rightIndex = 0;
         int product = 1;
+        int elementsConsideredToTheRight = 0;
 
         while (leftIndex < length) {
+            rightIndex = rightIndex >= length ? rightIndex%length : rightIndex;
             product *= nums[rightIndex];
-            if (product <= k) {
+            if (product <= k ) {
 
                 // If all the elements product is less than K
                 if (leftIndex == 0 && rightIndex == length - 1) {
@@ -34,14 +36,27 @@ public class SubSetsProductLessThanK {
                 }
 
                 rightIndex++;
-                rightIndex %= length;
+                // rightIndex %= length;
             } else {
                 System.out.println("leftIndex: " + leftIndex + " rightIndex: " + rightIndex);
+
                 int numberOfElementsToBeConsidered;
-                if (leftIndex > rightIndex) {
-                    numberOfElementsToBeConsidered = length - leftIndex + rightIndex;
-                    numberOfSubSets += Math.pow(2, numberOfElementsToBeConsidered) - 2;
-                    leftIndex++;
+
+                // If left index is not zero, we can consider the start of the elements
+                if (leftIndex != 0 /*&& leftIndex > rightIndex*/) {
+
+                    if (leftIndex <= rightIndex) {
+                        product /= nums[rightIndex];
+                        elementsConsideredToTheRight = rightIndex - leftIndex;
+                        rightIndex = 0;
+                        continue;
+                    } else {
+                        numberOfElementsToBeConsidered = elementsConsideredToTheRight + rightIndex;
+                        numberOfSubSets += Math.pow(2, numberOfElementsToBeConsidered) - 2;
+                        leftIndex++;
+                        rightIndex = leftIndex;
+                    }
+
                 } else {
                     numberOfElementsToBeConsidered = rightIndex - leftIndex;
                     numberOfSubSets += numberOfElementsToBeConsidered > 1 ? Math.pow(2, rightIndex - leftIndex) - 2 : 1;// minus 2 because we are skipping the empty subset
@@ -60,10 +75,11 @@ public class SubSetsProductLessThanK {
 
     public static void main(String[] args) {
 
-        int[] nums = {1, 2, 3, 4, 5, 6};
+        int[] nums = {1,2,3,4,5,6,7,8,9,10};
 
 
-        int numberOfSubSets = numberOfSubSetsProductLessThankK(nums, 7);
+        // K must be greater than 0
+        int numberOfSubSets = numberOfSubSetsProductLessThankK(nums, 25);
 
         System.out.println(numberOfSubSets);
 
