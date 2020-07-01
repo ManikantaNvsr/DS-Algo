@@ -1,39 +1,54 @@
 package dev.problems;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 // https://leetcode.com/contest/weekly-contest-195/problems/path-crossing/
 public class PathCrossing {
 
     public static void main(String[] args) {
 
-        String path = "WSSESEEE";
+//        String path = "WSSESEEE";
 //        String path = "NSE";
 //        String path = "NES";
 //        String path = "NESW";
+//        String path = "NESWW";
+        String path = "NNSWWEWSSESSWENNW";
         PathCrossing pathCrossing = new PathCrossing();
         System.out.println(pathCrossing.isPathCrossing(path));
     }
 
     public boolean isPathCrossing(String path) {
+        int leftIndex = 0;
+        int rightIndex = 0;
         String[] directions = path.split("");
-        int offSet = 0;
-        for (String direction :
-                directions) {
-            if (direction.equalsIgnoreCase("N")) {
-                offSet += 1;
-            } else if (direction.equalsIgnoreCase("S")) {
-                offSet -= 1;
-            } else if (direction.equalsIgnoreCase("W")) {
-                offSet += 1000000000;
-            } else {
-                offSet -= 1000000000;
+
+        ArrayList<String> points = new ArrayList<>();
+        points.add(leftIndex +""+rightIndex);
+
+        for (String direction : directions) {
+            switch (direction) {
+                case "N":
+                    rightIndex++;
+                    break;
+                case "E":
+                    leftIndex++;
+                    break;
+                case "S":
+                    rightIndex--;
+                    break;
+                case "W":
+                    leftIndex--;
+                    break;
             }
-            if (offSet == 0) {
+
+            String point  = leftIndex +""+rightIndex;
+
+            if(points.contains(point)){
                 return true;
             }
+            points.add(point);
         }
-
-        return offSet == 0;
+        return false;
     }
 }
