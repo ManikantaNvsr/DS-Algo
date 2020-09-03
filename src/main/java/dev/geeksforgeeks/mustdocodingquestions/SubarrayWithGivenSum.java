@@ -54,7 +54,9 @@ public class SubarrayWithGivenSum {
 
             // Let's say window has a negative number at the start and the window sum is greater than the target sum.
             // As per the above approach, if we remove the start then the window sum will increase.
+            // In this approach, there is a chance that we could end the iteration by keep on deleting the starting elements before reaching the end of the array.
             // So the above sliding window solution doesn't work in case of negative numbers.
+
 
             // HashMap Approach: Handles Negative Numbers in the array as well
             // Iterate through each element in the array
