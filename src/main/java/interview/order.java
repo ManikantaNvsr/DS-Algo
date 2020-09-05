@@ -1,4 +1,4 @@
-package epam;
+package interview;
 
 public class order {
 

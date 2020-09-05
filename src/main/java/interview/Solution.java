@@ -1,8 +1,6 @@
-package epam;
+package interview;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
@@ -11,6 +9,7 @@ public class Solution {
         // order contains orderId, itemId, itemName, quantity
 
         ArrayList<order> ordersList = new ArrayList<>();
+
 
         // hashmap to store the item and their quantities
         HashMap<String, Integer> itemAndQuantity = new HashMap();
@@ -27,8 +26,20 @@ public class Solution {
 
         }
 
+        List<Map.Entry<String, Integer>> listOfItemAndQuantities = new ArrayList<>(itemAndQuantity.entrySet());
+
         // sort the itemAndQuantity based on the quantity
 
 
+        // This is old way of doing
+        Collections.sort(listOfItemAndQuantities, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });
+
+        listOfItemAndQuantities.sort((a, b) -> b.getValue().compareTo(a.getValue()));
     }
 }

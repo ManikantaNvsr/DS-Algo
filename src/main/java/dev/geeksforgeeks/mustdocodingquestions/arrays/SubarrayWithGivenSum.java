@@ -1,4 +1,4 @@
-package dev.geeksforgeeks.mustdocodingquestions;
+package dev.geeksforgeeks.mustdocodingquestions.arrays;
 
 import java.util.Arrays;
 import java.util.HashMap;
