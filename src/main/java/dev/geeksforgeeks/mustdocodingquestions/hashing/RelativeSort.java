@@ -16,14 +16,12 @@ public class RelativeSort {
         int[] result = new int[arr1.length];
         int startIndex = 0;
         int endIndex = arr1.length - 1;
-
         // create LinkedHashMap to preserve the sorting order of array 2 in the keys and the respective frequency
         // Loading it with zero initially.
         Map<Integer, Integer> map = new LinkedHashMap<>();
         for (int value : arr2) {
             map.put(value, 0);
         }
-
         // iterate all the elements from the array 1 and add their frequency to the map above.
         for (int value : arr1) {
             if (map.containsKey(value)) {
@@ -34,7 +32,7 @@ public class RelativeSort {
                 result[endIndex--] = value;
             }
         }
-
+        // Load the result array
         for (int value : arr2) {
             for (int i = 0; i < map.get(value); i++) {
                 result[startIndex++] = value;
