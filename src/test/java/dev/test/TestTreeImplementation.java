@@ -2,7 +2,7 @@ package dev.test;
 
 import dev.code.Tree;
 
-import dev.problems.DiameterOfBinaryTree;
+import dev.problems.leetcode.DiameterOfBinaryTree;
 import org.junit.Test;
 
 public class TestTreeImplementation {
