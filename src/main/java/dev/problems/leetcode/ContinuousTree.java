@@ -1,6 +1,6 @@
 package dev.problems.leetcode;
 
-import dev.code.TreeNode;
+import dev.implementations.TreeNode;
 
 import java.util.TreeSet;
 

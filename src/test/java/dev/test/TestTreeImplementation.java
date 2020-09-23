@@ -1,6 +1,6 @@
 package dev.test;
 
-import dev.code.Tree;
+import dev.implementations.Tree;
 
 import dev.problems.leetcode.DiameterOfBinaryTree;
 import org.junit.Test;
