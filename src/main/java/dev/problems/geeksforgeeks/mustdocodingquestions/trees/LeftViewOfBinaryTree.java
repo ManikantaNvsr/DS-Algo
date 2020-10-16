@@ -1,6 +1,6 @@
 package dev.problems.geeksforgeeks.mustdocodingquestions.trees;
 
-import dev.implementations.TreeNode;
+import dev.algorithms.TreeNode;
 
 //https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1
 public class LeftViewOfBinaryTree {

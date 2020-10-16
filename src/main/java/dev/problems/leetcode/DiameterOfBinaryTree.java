@@ -1,6 +1,6 @@
 package dev.problems.leetcode;
 
-import dev.implementations.TreeNode;
+import dev.algorithms.TreeNode;
 
 // https://leetcode.com/problems/diameter-of-binary-tree/
 public class DiameterOfBinaryTree {

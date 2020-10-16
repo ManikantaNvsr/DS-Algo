@@ -1,6 +1,6 @@
 package dev.test;
 
-import dev.implementations.Graph;
+import dev.algorithms.Graph;
 import org.junit.Test;
 
 public class TestGraphImplementation {

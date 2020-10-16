@@ -1,6 +1,6 @@
 package dev.problems.geeksforgeeks.mustdocodingquestions.linkedlists;
 
-import dev.implementations.Node;
+import dev.algorithms.Node;
 
 //https://practice.geeksforgeeks.org/problems/finding-middle-element-in-a-linked-list/1
 public class MiddleElementInLinkedList {

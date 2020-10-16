@@ -1,4 +1,4 @@
-package dev.implementations;
+package dev.algorithms;
 
 public class TreeNode {
     public int val;
