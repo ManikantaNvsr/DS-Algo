@@ -14,7 +14,8 @@ public class StreamIntroduction {
         int sum = Stream.of(1, 2, 3, 4, 5).reduce(0, Integer::sum);
         System.out.println("sum is " + sum);
         int mul = Stream.of(1, 2, 3, 4, 5).reduce(1, (a, b) -> a * b);
-        System.out.println("mul is " + mul);
+        Optional<String> str = Stream.of("1", "2", "3", "4", "5").reduce( (a, b) -> a + b);
+        System.out.println("mul is " + str.get());
         int sub = Stream.of(1, 2, 3).reduce(0, (a, b) ->  a-b);
         System.out.println("div is " + sub);
 
@@ -63,6 +64,7 @@ public class StreamIntroduction {
         IntStream.of(1,2,3,4,5).sorted().limit(3).forEach(System.out::println);
 
 //        Stream.generate(()->"Hey").forEach(System.out::println);
+        Stream.generate(new Random() :: nextInt).forEach(System.out::println);
 
     }
 }
