@@ -9,11 +9,19 @@ public class BasicCalculator {
         Stack<Character> operators = new Stack<>();
         Stack<Integer> operands = new Stack<>();
         char[] charArray = s.replaceAll(" ", "").toCharArray();
+        boolean isPreviousOperand = false;
         for (int charArrayLength = charArray.length, i = charArrayLength - 1; i > -1; i--) {
             char character = charArray[i];
             if (Character.isDigit(character)) {
-                operands.push(Character.getNumericValue(character));
+                if (isPreviousOperand) {
+                    String actualValue = character + String.valueOf(operands.pop());
+                    operands.push(Integer.parseInt(actualValue));
+                } else {
+                    operands.push(Character.getNumericValue(character));
+                }
+                isPreviousOperand = true;
             } else {
+                isPreviousOperand = false;
                 if (character == '(') {
                     while (operators.peek() != ')') {
                         int value = calculate(operators.pop(), operands.pop(), operands.pop());
