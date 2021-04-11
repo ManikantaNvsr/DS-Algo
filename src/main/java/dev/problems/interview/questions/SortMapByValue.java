@@ -1,4 +1,4 @@
-package dev.algorithms;
+package dev.problems.interview.questions;
 
 import java.util.*;
 import java.util.stream.Collectors;
