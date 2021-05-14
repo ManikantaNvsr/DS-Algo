@@ -1,0 +1,121 @@
+//
+SLL
+1->2->3->4->5
+   |___<____|
+
+Approach-1:
+Use auxillary data store - HashSet
+
+public boolean loopExists(Node head){
+    Node temp = head;
+    Set<Node> visitedNodes = new HashSet<>();
+    boolean noLoopFound = true;
+    while(temp != null && noLoopFound){
+        // checking whether the iterating node is already present in visited nodes
+        if(visitedNodes.contains(temp)){
+            noLoopFound = false;
+        }
+        // If not, add it to the visited nodes
+        else{
+        visitedNodes.add(temp.toString());
+        }
+        temp = temp.next;
+    }
+    if(!noLoopFound){
+    return true;
+    }
+    else{
+    return false;
+   }
+}
+TC: O(n)
+SC: O(n)
+----------------------
+Approach-2:
+Use auxillary data store - StringBuffer
+
+TC: O(n)
+SC: O(1) --> O(n)
+
+----------------------
+Approach-3:
+Hint: Correlate to a race track.
+Sol: Fast & Slow Pointers
+
+TC: O(n)
+SC: O(1)
+
+
+
+2:
+
+1  2  3  4  5
+6  7  8  9  10
+11 12 13 14 15
+16 17 18 19 20
+
+OP: 1 2 3 4 5 10 15 20 19 18 17 16 11 6 7 8 9 14 13 12
+
+6
+// count the numbers visited and this count should not be more than the number of elements (m * n).
+right()  --> (i, j) increment j here until it reaches "n" and make note of "i" that it shouldn't touch
+// count the numbers visited and this count should not be more than the number of elements.
+down()  ---> (i, j) increment i here until it reached "m" and make note of "j" that it shouldn't touch
+// count the numbers visited and this count should not be more than the number of elements.
+left() ----> (i, j) decrement j here until it reaches 0 or "j"s that it shouldn't touch.
+// count the numbers visited and this count should not be more than the number of elements.
+up() -------> (i, j) decrement i here until it reaches "i"s that it shouldn't touch.
+
+public void print(int[][] arr, m, n){
+    // consider leftIndex and rightIndex are cartesian coordinates of given array
+    int leftIndex = 0;
+    int rightIndex = 0;
+    int numberOfElements = m * n;
+    int counterForPrintedElements = 0;
+    while(counterForPrintedElements < numberOfElements){
+        slideRight(leftIndex, rightIndex, counterForPrintedElements, numberOfElements);
+        slideDown(leftIndex, rightIndex, counterForPrintedElements, numberOfElements);
+        slideLeft(leftIndex, rightIndex, counterForPrintedElements, numberOfElements);
+        slideUp(leftIndex, rightIndex, counterForPrintedElements, numberOfElements);
+    }
+}
+
+public void slideRight(int leftIndex, int rightIndex, int counterForPrintedElements, int numberOfElements){
+
+    while(rightIndex < n){
+        // check i's index is already present in the collection adding below
+        System.out.print(arr[leftIndex][rightIndex++] + " ");
+        // add index (leftIndex) to the list of i's
+    }
+}
+
+public void slideDown(int leftIndex, int rightIndex, int counterForPrintedElements, int numberOfElements){
+            rightIndex = rightIndex-1;
+            while(leftIndex < m ){
+                // check j's index is already present in the collection adding below
+                System.out.print(arr[leftIndex++][rightIndex] + " ");
+                // add index (rightIndex) to the list of j's
+            }
+}
+
+public void slideLeft(int leftIndex, int rightIndex, int counterForPrintedElements, int numberOfElements){
+            leftIndex = leftIndex-1;
+            while(rightIndex > 0 && (shouldn't be present in j's collection also)){
+                // check i's index is already present in the collection adding below
+                System.out.print(arr[leftIndex][rightIndex--] + " ");
+                // add index (leftIndex) to the list of i's
+            }
+}
+
+public void slideUp(int leftIndex, int rightIndex, int counterForPrintedElements, int numberOfElements){
+            rightIndex = rightIndex+1;
+            while(rightIndex > 0 && (shouldn't be present in j's collection also)){
+                // check i's index is already present in the collection adding below
+                System.out.print(arr[leftIndex][rightIndex--] + " ");
+                // add index (leftIndex) to the list of i's
+            }
+}
+
+
+
+
