@@ -31,7 +31,6 @@ public class PerfectSquares {
             }
             arr[i] = min;
         }
-
         return arr[n];
     }
 }
