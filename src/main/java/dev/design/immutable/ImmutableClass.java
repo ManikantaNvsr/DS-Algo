@@ -9,12 +9,7 @@ public final class ImmutableClass {
 
     public ImmutableClass(String name, Map<String, String> map) {
         this.name = name;
-        Map<String, String> tempMap = new HashMap<>();
-        for (Map.Entry<String, String> entry :
-                map.entrySet()) {
-            tempMap.put(entry.getKey(), entry.getValue());
-        }
-        this.map = tempMap;
+        this.map = new HashMap<>(map);
     }
 
     public String getName() {
@@ -22,19 +17,13 @@ public final class ImmutableClass {
     }
 
     public Map<String, String> getMap() {
-        Map<String, String> tempMap = new HashMap<>();
-        for (Map.Entry<String, String> entry :
-                this.map.entrySet()) {
-            tempMap.put(entry.getKey(), entry.getValue());
-        }
-        return tempMap;
+        return new HashMap<>(this.map);
     }
 
-    // for testing
-//    public static void main(String[] args) {
-//        ImmutableClass immutableClass = new ImmutableClass("test", new HashMap<>());
-//        System.out.println("Initialized with: " + immutableClass.getMap());
-//        immutableClass.getMap().put("test", "test");
-//        System.out.println("Changed with: " + immutableClass.getMap());
-//    }
+    public static void main(String[] args) {
+        ImmutableClass immutableClass = new ImmutableClass("test", new HashMap<>());
+        System.out.println("Initialized with: " + immutableClass.getMap());
+        immutableClass.getMap().put("test", "test");
+        System.out.println("Changed with: " + immutableClass.getMap());
+    }
 }
