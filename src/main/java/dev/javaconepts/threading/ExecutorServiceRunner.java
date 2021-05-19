@@ -1,11 +1,14 @@
 package dev.javaconepts.threading;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class ExecutorServiceRunner {
     public static void main(String[] args) {
-//        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        // Print every 5 seconds
+//        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+
+//        scheduledExecutorService.scheduleAtFixedRate(() -> System.out.println("Hi"), 0, 5, TimeUnit.SECONDS);
+
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         executorService.execute(new Task(1));
         executorService.execute(new Task(2));
@@ -22,5 +25,7 @@ public class ExecutorServiceRunner {
         }
         System.out.println("Task 6 done");
         executorService.shutdown();
+
+        ExecutorService executorService1 = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.DAYS, new LinkedBlockingDeque<>());
     }
 }
