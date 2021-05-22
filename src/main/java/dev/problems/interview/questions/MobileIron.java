@@ -27,7 +27,7 @@ public class MobileIron {
         votesList.add(voter1);
         votesList.add(voter2);
         votesList.add(voter3);
-
+//
         List<String> votes = new LinkedList<>();
 
 //        TC:
@@ -45,7 +45,7 @@ public class MobileIron {
         }
 
 
-//        List<String> votes = Arrays.asList("A", "B", "C", "B", "C", "D", "C", "D", "B");
+//        List<String> votes = Arrays.asList("A", "C", "B", "B", "C", "D", "C", "D", "B");
 
 
 //        Map<String, Long> map = votes.stream()
@@ -64,6 +64,7 @@ public class MobileIron {
                 frequencyMap.put(vote, 1);
             }
         }
+//        System.out.println(frequencyMap);
         // Sort the map based on the frequency
         // passing the comparator for sorting the entry set in reverse order
         // TC: O(n log n)
